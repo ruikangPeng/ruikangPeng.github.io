@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>蓝牙主设备模式与从设备模式辨析</title>
+    <link href="/2022/11/25/%E8%93%9D%E7%89%99%E4%B8%BB%E8%AE%BE%E5%A4%87%E6%A8%A1%E5%BC%8F%E4%B8%8E%E4%BB%8E%E8%AE%BE%E5%A4%87%E6%A8%A1%E5%BC%8F%E8%BE%A8%E6%9E%90/"/>
+    <url>/2022/11/25/%E8%93%9D%E7%89%99%E4%B8%BB%E8%AE%BE%E5%A4%87%E6%A8%A1%E5%BC%8F%E4%B8%8E%E4%BB%8E%E8%AE%BE%E5%A4%87%E6%A8%A1%E5%BC%8F%E8%BE%A8%E6%9E%90/</url>
+    
+    <content type="html"><![CDATA[<h1 id="一、蓝牙的角色"><a href="#一、蓝牙的角色" class="headerlink" title="一、蓝牙的角色"></a>一、蓝牙的角色</h1><p>BLE蓝牙的角色有五种：</p><ol><li>Broadcaster：又称为Advertiser，周期性的向周围设备广播数据。</li><li>Observer：又称为Scanner，可以监听广播数据或者搜索周围设备。</li><li>Master：负责扫描设备并发起建立请求。</li><li>Slave：负责广播并接收连接请求的设备。</li><li>Initiator：这个角色目前还没有给出明确的定义及其作用。</li></ol><p>这些角色由链路层定义，依据设备是否建立连接又划分为两组：</p><p>1、 broadcaster和observer：</p><pre><code class="hljs">    这组属于广播阶段的概念，即在建立连接之前设备的角色。</code></pre><p>2、master和slave</p><pre><code class="hljs">    这组属于连接之后的概念。建立连接之后，broadcast角色变为master，observer角色变为slave。</code></pre><hr><h1 id="二、主设备模式与从设备模式"><a href="#二、主设备模式与从设备模式" class="headerlink" title="二、主设备模式与从设备模式"></a>二、主设备模式与从设备模式</h1><ol><li><p>主设备模式：工作在主设备模式,可以与一个从设备进行连接。在此模式下可以对周围设备进行搜索并选择需要连接的从设备进行连接。理论上，一个蓝牙主设备，可同时与7个蓝牙从设备进行通讯。一个具备蓝牙通讯功能的设备，可以在两个角色间切换，平时工作在从模式，等待其它主设备来连接，需要时，转换为主模式，向其它设备发起呼叫。一个蓝牙设备以主模式发起呼叫时，需要知道对方的蓝牙地址、配对密码等信息，配对完成后，可直接发起连接。</p></li><li><p>从设备模式：工作在从机模式下的蓝牙模块只能被主机搜索，不能主动搜索。从设备跟主机连接以后，也可以和主机设备进行发送和接收数据。</p></li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>蓝牙基础知识</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>BuleTooth</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>AFLNET调研文档</title>
     <link href="/2022/11/23/AFLNET%E8%B0%83%E7%A0%94%E6%96%87%E6%A1%A3/"/>
     <url>/2022/11/23/AFLNET%E8%B0%83%E7%A0%94%E6%96%87%E6%A1%A3/</url>
