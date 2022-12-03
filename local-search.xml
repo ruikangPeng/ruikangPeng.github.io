@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>白盒测试的测试用例设计方法</title>
+    <link href="/2022/12/04/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95%E7%9A%84%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95/"/>
+    <url>/2022/12/04/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95%E7%9A%84%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95/</url>
+    
+    <content type="html"><![CDATA[<h1 id="一、什么是白盒测试"><a href="#一、什么是白盒测试" class="headerlink" title="一、什么是白盒测试"></a>一、什么是白盒测试</h1><pre><code class="hljs">   白盒测试也称结构测试或逻辑驱动测试，是把测试对象看作一个透明白色的盒子，测试人员依据程序内部逻辑结构相关信息，设计或选择测试用例，对程序所有逻辑路径进行测试。   所以白盒测试是一种基于代码的测试，测试者必须检查程序的内部结构，从检查程序的逻辑着手，得出测试数据。   一般来说，白盒测试是开发做单元测试用，但是也有是测试自己做的，那么对测试的能力要求比较高。</code></pre><h1 id="二、测试用例设计方法"><a href="#二、测试用例设计方法" class="headerlink" title="二、测试用例设计方法"></a>二、测试用例设计方法</h1><pre><code class="hljs">   白盒的测试用例设计方法有六种，按照强度由低到高分别为：语句覆盖、分支覆盖（判定覆盖）、条件覆盖、判定条件覆盖、条件组合覆盖、路径覆盖。&lt;br /&gt;以下面这段程序举例说明：</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">if</span> A <span class="hljs-keyword">and</span> B:<br>    then Action <span class="hljs-number">1</span><br><span class="hljs-keyword">if</span> C <span class="hljs-keyword">or</span> D:<br>    then Action <span class="hljs-number">2</span><br></code></pre></td></tr></table></figure><h3 id="1、语句覆盖"><a href="#1、语句覆盖" class="headerlink" title="1、语句覆盖"></a>1、语句覆盖</h3><pre><code class="hljs">   要求保证程序中每个语句至少被执行一次。   满足语句覆盖设计一条测试用例即可：A = true，B = true，C = true，D = 随意   这个方法仅仅考虑了对代码中的执行语句进行覆盖而没有考虑各种条件和分支。</code></pre><h3 id="2、分支覆盖（判定覆盖）"><a href="#2、分支覆盖（判定覆盖）" class="headerlink" title="2、分支覆盖（判定覆盖）"></a>2、分支覆盖（判定覆盖）</h3><pre><code class="hljs">   要求程序中每个判断取真和取假至少经历一次。   具体说来，满足分支覆盖要考虑：              1. A and B == true              2. A and B == false              3. C or D == true              4. C or D == false   由此，我们设计两条测试用例即可：              1. A = true，B = true，C = true，D = 随意（这条用例就满足了上述1、3两条考虑）              2. A = false，B = 随意，C = false，D = false（这条用例就满足了上述2、4两条考虑）</code></pre><h3 id="3、条件覆盖"><a href="#3、条件覆盖" class="headerlink" title="3、条件覆盖"></a>3、条件覆盖</h3><pre><code class="hljs">   要求能使每个判定中的每个条件都获得可能的取值。即每个条件至少有一次真值和假值。   具体说来，满足条件覆盖要考虑八种情况：              1. A = true / false              2. B = true / false              3. C = true / false              4. D = true / false   由此，我们设计两条测试用例即可：              1. A = true，B = true，C = true，D = true              2. A = false，B = false，C =false，D = false</code></pre><h3 id="4、判定条件覆盖"><a href="#4、判定条件覆盖" class="headerlink" title="4、判定条件覆盖"></a>4、判定条件覆盖</h3><pre><code class="hljs">   要求可以使得程序判断中每个条件所有的可能取值至少执行一次，同时每个判断本身所有的结果也要至少执行一次。   具体说来，满足判定条件覆盖要同时考虑分支覆盖和条件覆盖考虑的内容。   由此，我们设计两条测试用例就可以满足覆盖需求：              1. A = true，B = true，C =false，D = false              2. A = false，B = false，C = true，D = true</code></pre><h3 id="5、条件组合覆盖"><a href="#5、条件组合覆盖" class="headerlink" title="5、条件组合覆盖"></a>5、条件组合覆盖</h3><pre><code class="hljs">   要求可以使得程序每个判定中的各个条件的各种可能组合都至少出现一次。   具体说来，满足条件组合覆盖要考虑A、B、C、D的所有取值。也要考虑A和B的所有组合、C和D的所有组合。   由此，我们需要设计四条测试用例才能满足覆盖需求：              1. A = true，B = true，C = true，D = true              2. A = true，B = false，C =true，D = false              3. 2. A = false，B = true，C = false，D = true              4. 2. A = false，B = false，C = false，D = false</code></pre><h3 id="6、路径覆盖"><a href="#6、路径覆盖" class="headerlink" title="6、路径覆盖"></a>6、路径覆盖</h3><pre><code class="hljs">   要求覆盖程序中所有可能的路径。即穷举所有，这个实际操作性不强。</code></pre><h1 id="三、对白盒测试的评价"><a href="#三、对白盒测试的评价" class="headerlink" title="三、对白盒测试的评价"></a>三、对白盒测试的评价</h1><ol><li>优点</li></ol><ul><li>迫使测试人员去仔细思考软件的实现</li><li>帮助软件测试人员增大代码的覆盖率。提高代码的质量，发现代码中隐藏的问题</li></ul><ol start="2"><li>缺点</li></ol><ul><li>昂贵: 系统庞大时，测试开销会非常大;测试人员要求比较高，人才昂贵。</li><li>测试基于代码，只能测试开发人员做的对不对，而不能知道设计是否正确，可能会漏掉一些功能需求</li></ul><h1 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h1><pre><code class="hljs">   以上简单描述了几种不用的白盒测试方法的原则和优劣。在实际的操作中，要正确使用白盒测试的代码覆盖方法，就要从代码分析和代码调研入手，根据调研的结果，可以选择上述方法中的某一种，或者好几种方法的结合，设计出高效的测试用例，尽可能全面地覆盖到代码中的每一个逻辑路径，只有适当的测试方法，才能帮助我们从代码的角度对产品做到最好的测试。</code></pre>]]></content>
+    
+    
+    <categories>
+      
+      <category>测试相关基础知识</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>测试</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>蓝牙主设备模式与从设备模式辨析</title>
     <link href="/2022/11/25/%E8%93%9D%E7%89%99%E4%B8%BB%E8%AE%BE%E5%A4%87%E6%A8%A1%E5%BC%8F%E4%B8%8E%E4%BB%8E%E8%AE%BE%E5%A4%87%E6%A8%A1%E5%BC%8F%E8%BE%A8%E6%9E%90/"/>
     <url>/2022/11/25/%E8%93%9D%E7%89%99%E4%B8%BB%E8%AE%BE%E5%A4%87%E6%A8%A1%E5%BC%8F%E4%B8%8E%E4%BB%8E%E8%AE%BE%E5%A4%87%E6%A8%A1%E5%BC%8F%E8%BE%A8%E6%9E%90/</url>
